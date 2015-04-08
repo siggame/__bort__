@@ -1,3 +1,3 @@
 #!/bin/bash
 
-FILE_BRAIN_PATH=./ BIND_ADDRESS="localhost" bin/hubot -a shell -n bort
+FILE_BRAIN_PATH=./ BIND_ADDRESS="localhost" HUBOT_AUTH_ADMIN="" bin/hubot -a shell -n bort

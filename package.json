@@ -6,8 +6,7 @@
   "description": "A Hubot for MegaMinerAI's IRC Channel",
   "dependencies": {
     "hubot": "^2.12.0",
-    "hubot-diagnostics": "0.0.1",
-    "hubot-help": "^0.1.1",
+    "hubot-auth": "^1.2.0",
     "hubot-irc": "^0.2.7",
     "hubot-scripts": "^2.5.16"
   },
