@@ -8,9 +8,13 @@
     "hubot": "^2.12.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-help": "^0.1.1",
+    "hubot-irc": "^0.2.7",
     "hubot-scripts": "^2.5.16"
   },
   "engines": {
     "node": "0.10.x"
+  },
+  "scripts": {
+    "start": "FILE_BRAIN_PATH=$OPENSHIFT_DATA_DIR PORT=$OPENSHIFT_NODEJS_PORT BIND_ADDRESS=$OPENSHIFT_NODEJS_IP HEROKU_URL=$OPENSHIFT_APP_DNS bin/hubot -a irc -n bort"
   }
 }
