@@ -8,7 +8,8 @@
     "hubot": "^2.12.0",
     "hubot-auth": "^1.2.0",
     "hubot-irc": "^0.2.7",
-    "hubot-scripts": "^2.5.16"
+    "hubot-scripts": "^2.5.16",
+    "moment": "^2.10.0"
   },
   "engines": {
     "node": "0.10.x"
