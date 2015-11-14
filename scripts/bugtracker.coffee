@@ -1,19 +1,76 @@
 ﻿# Description:
-#   Bug Tracker for Megaminer AI
+#   <description of the scripts functionality>
+#
+# Dependencies:
+#   "<module name>": "<module version>"
+#
+# Configuration:
+#   LIST_OF_ENV_VARS_TO_SET
 #
 # Commands:
-#   bort bug <description> - Report a bug, submits a github issue to https://github.com/siggame/bort/ and marks it as competitor.
-#   
-#
-# URLS:
-#   /hubot/help
+#   hubot <trigger> - <what the respond trigger does>
+#   <trigger> - <what the hear trigger does>
 #
 # Notes:
-#   These commands are grabbed from comment blocks at the top of each file.
+#   <optional notes required for the script>
 #
-# Adapted from https://github.com/hubot-scripts/hubot-help/
-#
+# Author:
+#   <github username of the original script author>
+
+_ = require "underscore"
+GitHubAPI = require "github"
+
+# Configuration Options
+config =
+    cred:
+        token: process.env.HUBOT_STATUS_GITHUB_TOKEN
+    repo:
+        name: process.env.HUBOT_STATUS_REPO_NAME
+        owner: process.env.HUBOT_STATUS_REPO_OWNER
+    bug_labels: ["competitor"]
+
+# API Helper
+github = new GitHubAPI
+    version: "3.0.0"
+    debug: false
+    protocol: "https"
+    timeout: 5000
+    headers:
+        "user-agent": "SIG-Game-Hubot-Bort"
+
+# Authenticate if possible
+if config.cred.token?
+    github.authenticate
+        type: "oauth"
+        token: config.cred.token
+
+class IssueError
+    ###
+    An Error class for throwing
+    ###
+    constructor: (@message) ->
+
+
+submitIssue = (title, body, done) ->
+    ###
+    Submit a status update to GitHub
+    ###
+    options =
+        user: config.repo.owner
+        repo: config.repo.name
+        title: title
+        body: body
+        branch: "master"
+        labels: config.bug_labels
+
+    github.issues.create options, (err, result) ->
+        if err
+            throw new IssueError("Error creating file: #{err}")
+            done result
 
 module.exports = (robot) ->
-    robot.respond /^report bug (.*)/i
-        bug = escape(msg.match[1])
+    robot.respond /report bug (.*): (.*)/i, (msg) ->
+        username = msg.user.name if msg.user
+        title = msg.match[1]
+        body = "#{msg.match[2]}\n\nReported by #{username}"
+        msg.send "#{title}\n#{body}"

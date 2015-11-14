@@ -5,10 +5,12 @@
   "author": "MST SIG-Game",
   "description": "A Hubot for MegaMinerAI's IRC Channel",
   "dependencies": {
+    "github": "^0.2.4",
     "hubot": "^2.12.0",
     "hubot-auth": "^1.2.0",
     "hubot-irc": "^0.2.7",
-    "hubot-scripts": "^2.5.16"
+    "hubot-scripts": "^2.5.16",
+    "underscore": "^1.8.3"
   },
   "engines": {
     "node": "0.10.x"
