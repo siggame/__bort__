@@ -77,10 +77,10 @@ module.exports = (robot) ->
         robot.logger.warning "HUBOT_ISSUE_GITHUB_TOKEN variable is not set."
 
     robot.respond /report bug (.*): (.*)/i, (msg) ->
-        username = msg.user.name if msg.user
+        user = msg.message.user
         title = msg.match[1]
-        body = "#{msg.match[2]}\n\nReported by #{username}"
+        body = "#{msg.match[2]}\n\nReported by #{user.name}"
 
-        msg.reply "OK, #{username}. I'll tell a dev."
+        msg.reply "OK, I'll tell a dev."
         submitIssue title, body, (done) ->
             msg.reply "Submitted issue."
