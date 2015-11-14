@@ -81,5 +81,6 @@ module.exports = (robot) ->
         title = msg.match[1]
         body = "#{msg.match[2]}\n\nReported by #{username}"
 
+        msg.reply "OK, #{username}. I'll tell a dev."
         submitIssue title, body, (done) ->
             msg.reply "Submitted issue."
