@@ -84,8 +84,8 @@ module.exports = (robot) ->
             msg.reply "Sorry! You need the #{config.reporter_role} role to report bugs."
             return
 
-        title = msg.match[1]
-        body = "#{msg.match[2]}\n\nReported by #{user.name}"
+        title = _.escape(msg.match[1])
+        body = "#{_.escape(msg.match[2])}\n\nReported by #{user.name}"
 
         msg.reply "OK, I'll tell a dev."
         submitIssue title, body, (done) ->
