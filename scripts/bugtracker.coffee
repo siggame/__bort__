@@ -1,4 +1,4 @@
-﻿# Description:
+# Description:
 #   <description of the scripts functionality>
 #
 # Dependencies:
@@ -16,6 +16,7 @@
 #
 # Author:
 #   <github username of the original script author>
+
 
 _ = require "underscore"
 GitHubAPI = require "github"
