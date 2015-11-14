@@ -23,10 +23,10 @@ GitHubAPI = require "github"
 # Configuration Options
 config =
     cred:
-        token: process.env.HUBOT_STATUS_GITHUB_TOKEN
+        token: process.env.HUBOT_ISSUE_GITHUB_TOKEN
     repo:
-        name: process.env.HUBOT_STATUS_REPO_NAME
-        owner: process.env.HUBOT_STATUS_REPO_OWNER
+        name: process.env.HUBOT_ISSUE_REPO_NAME
+        owner: process.env.HUBOT_ISSUE_REPO_OWNER
     bug_labels: ["competitor"]
 
 # API Helper
@@ -60,17 +60,26 @@ submitIssue = (title, body, done) ->
         repo: config.repo.name
         title: title
         body: body
-        branch: "master"
         labels: config.bug_labels
 
     github.issues.create options, (err, result) ->
         if err
             throw new IssueError("Error creating file: #{err}")
-            done result
+        done result
 
 module.exports = (robot) ->
+    # Sanity check our required variables
+    unless config.repo.name?
+        robot.logger.warning "HUBOT_ISSUE_REPO_NAME variable is not set."
+    unless config.repo.owner?
+        robot.logger.warning "HUBOT_ISSUE_REPO_OWNER variable is not set."
+    unless config.cred.token?
+        robot.logger.warning "HUBOT_ISSUE_GITHUB_TOKEN variable is not set."
+
     robot.respond /report bug (.*): (.*)/i, (msg) ->
         username = msg.user.name if msg.user
         title = msg.match[1]
         body = "#{msg.match[2]}\n\nReported by #{username}"
-        msg.send "#{title}\n#{body}"
+
+        submitIssue title, body, (done) ->
+            msg.reply "Submitted issue."
