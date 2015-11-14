@@ -1,21 +1,21 @@
 # Description:
-#   <description of the scripts functionality>
+#   Allows authorized reporters to report bugs to GitHub
 #
 # Dependencies:
-#   "<module name>": "<module version>"
+#   "github": "^0.2.4"
+#   "hubot-auth": "^1.2.0"
 #
 # Configuration:
-#   LIST_OF_ENV_VARS_TO_SET
+#   HUBOT_ISSUE_GITHUB_TOKEN - The GitHub token to use for reports
+#   HUBOT_ISSUE_REPO_NAME - The repo that's getting the issues
+#   HUBOT_ISSUE_REPO_OWNER - The owner of said repo
 #
 # Commands:
 #   hubot <trigger> - <what the respond trigger does>
 #   <trigger> - <what the hear trigger does>
 #
 # Notes:
-#   <optional notes required for the script>
-#
-# Author:
-#   <github username of the original script author>
+#   Only users with the "reporter" role in hubot-auth can report
 
 
 _ = require "underscore"
