@@ -9,6 +9,6 @@
 #
 
 
-module.exports (robot) ->
-  robot.respond /^(?:(where)(?!.* in .*).* )?doc(?:s|umentation)\?$/i, (msg) ->
+module.exports = (robot) ->
+  robot.respond /(?:(where)(?!.* in .*).* )?doc(?:s|umentation)\?/i, (msg) ->
     msg.reply "you can find the MegaMinerAI Documentation at http://docs.megaminerai.com"
