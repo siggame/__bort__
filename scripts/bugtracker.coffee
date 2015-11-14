@@ -27,6 +27,7 @@ config =
     repo:
         name: process.env.HUBOT_ISSUE_REPO_NAME
         owner: process.env.HUBOT_ISSUE_REPO_OWNER
+    reporter_role: "reporter"
     bug_labels: ["competitor"]
 
 # API Helper
@@ -77,7 +78,12 @@ module.exports = (robot) ->
         robot.logger.warning "HUBOT_ISSUE_GITHUB_TOKEN variable is not set."
 
     robot.respond /report bug (.*): (.*)/i, (msg) ->
-        user = msg.message.user
+        user = msg.envelope.user
+
+        unless robot.auth.hasRole user, config.reporter_role
+            msg.reply "Sorry! You need the #{config.reporter_role} role to report bugs."
+            return
+
         title = msg.match[1]
         body = "#{msg.match[2]}\n\nReported by #{user.name}"
 
