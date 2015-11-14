@@ -11,8 +11,7 @@
 #   HUBOT_ISSUE_REPO_OWNER - The owner of said repo
 #
 # Commands:
-#   hubot <trigger> - <what the respond trigger does>
-#   <trigger> - <what the hear trigger does>
+#   hubot report bug <bug title>: <bug body> - Reports an issue
 #
 # Notes:
 #   Only users with the "reporter" role in hubot-auth can report
