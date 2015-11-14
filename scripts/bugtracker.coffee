@@ -1,5 +1,5 @@
 ﻿# Description:
-#   <description of the scripts functionality>
+#   Allow a github issue to be added by any person in the irc channel. This issue will be sent to the github megaminerai 16 issue page.
 #
 # Dependencies:
 #   "<module name>": "<module version>"
@@ -8,14 +8,11 @@
 #   LIST_OF_ENV_VARS_TO_SET
 #
 # Commands:
-#   hubot <trigger> - <what the respond trigger does>
-#   <trigger> - <what the hear trigger does>
-#
-# Notes:
-#   <optional notes required for the script>
+#   __bort__ report bug <title>: <server> - title and body of github issue
 #
 # Author:
-#   <github username of the original script author>
+#   AlexMarey
+#   michaelwisely
 
 _ = require "underscore"
 GitHubAPI = require "github"
